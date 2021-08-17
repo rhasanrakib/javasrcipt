@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="margin-top: 5rem;">
+        <input type="text" id="userInput" placeholder="Seconds">
+        <button id="b_alarm" onclick="myAlarm()">Set Timer</button> <br>
+        <p id="shw"></p>
+    </div>
+    <script>
+        "use strcit"
+        const myAlarm = () => {
+            const sec = document.getElementById("userInput").value;
+            //console.log(d);
+            counterSecond(sec);
+        }
+        const counterSecond = (sec) => {
+            let interval;
+            sec = parseInt(sec)
+            let counts = 0;
+            const decrements = () => {
+                console.log(new Date())
+                console.log(counts);
+                counts += 1;
+                if (counts == sec) {
+                    clearInterval(interval);
+                }
+                document.getElementById("shw").innerHTML = counts;
+            }
+            //decrements();\
+
+            if (counts != sec) {
+                interval = setInterval(decrements, 1000);
+            }
+            console.log(interval);
+            interval = setInterval(decrements, 2000);
+
+        }
+        function myDisplayer(some) {
+            document.getElementById("demo").innerHTML = some;
+        }
+        function getFile(myCallback) {
+            let req = new XMLHttpRequest();
+            req.open('GET', "mycar.html");
+            req.onload = function () {
+                if (req.status == 200) {
+                    myCallback(this.responseText);
+                } else {
+                    myCallback("Error: " + req.status);
+                }
+            }
+            req.send();
+        }
+
+        getFile(myDisplayer);
+    </script>
+</body>
+
+</html>
